@@ -46,7 +46,6 @@ function operate(a,b,operator){
 }
 
 let num1="", num2="", operator="" , display='';
-
 const buttons = document.querySelectorAll("button");
 
 buttons.forEach( button => {
@@ -56,63 +55,144 @@ button.addEventListener("click", handleClick );
 function handleClick (event) {
 
     const input = document.querySelector("input");
-    const operatorb = event.target;
-    const operatorClass = operatorb.className;
+    const button = event.target;
+    const buttonId = button.id;
 
-if(operatorClass == 'clearc'){
-    num1="";
-    num2="";
-    display = "";
-    input.value = display;
-    return;
-} 
+switch(buttonId){
+    case 'zero': display += '0';
+        if(operator != ''){
+            num2 += '0'
+        }
+        break;
 
-if(operatorClass == 'equalc'){
-   
-    num2 = display.slice(num1.length + 1);
-    console.log(num1,num2 , operator);
+    case 'one' : display += '1';
+        if(operator != ''){
+            num2 += '1'
+        }
+        break;
 
-   switch(operator){
+    case 'two' : display += '2';
+        if(operator != ''){
+            num2 += '2'
+        }
+        break;
 
-        case '+' : num1 = operate(num1,num2,'+');
+    case 'three' : display += '3';
+        if(operator != ''){
+            num2 += '3'
+        }
+        break;
+
+    case 'four' : display += '4';
+        if(operator != ''){
+            num2 += '4'
+        }
+        break;
+
+    case 'five' : display += '5';
+        if(operator != ''){
+            num2 += '5'
+        }
+        break;
+
+    case 'six' : display += '6';
+        if(operator != ''){
+            num2 += '6'
+        }
+        break;
+
+    case 'seven' : display += '7';
+        if(operator != ''){
+            num2 += '7'
+        }
+        break;
+
+    case 'eight' : display += '8';
+        if(operator != ''){
+            num2 += '8'
+        }
+        break;
+
+    case 'nine' : display += '9';
+        if(operator != ''){
+            num2 += '9'
+        }
+        break;
+
+    case 'negative' :
+        if(num2 != ''){
+            num2 = -num2
+        }else{
+        num1 = -num1;
+        console.log(num1);
+        }
+
+    case 'add' : 
+        if(num2 != ''){
+            num1 = operate(num1,num2,operator);
+            num2='';
+            operator = '+';
+            display = num1+'+';
+        }else{
+        num1 = display;
+        display += '+';
+        operator = '+';
+        }
+        break;
+    
+    case 'substract': 
+        if(num2 != ''){
+            num1 = operate(num1,num2,operator);
+            num2='';
+            operator = '-';
+            display = num1+'-';
+        }else{
+        num1 = display;
+        display += '-';
+        operator = '-';
+        }
+        break;
+
+    case 'divide' :  
+        if(num2 != ''){
+            num1 = operate(num1,num2,operator);
+            num2='';
+            operator = '/';
+            display = num1+'/';
+        }else{
+        num1 = display;
+        display += '/';
+        operator = '/';
+        }
+        break;
+
+    case 'multiply': 
+        if(num2 != ''){
+            num1 = operate(num1,num2,operator);
+            num2='';
+            operator = '*';
+            display = num1+'*';
+        }else{
+        num1 = display;
+        display += '*';
+        operator = '*';
+        }
+        break;
+
+    case 'clear' :
+       num1 =' ';
+       num2 = '';
+       display = '';
+       operator = '';
+        break;
+
+    case 'equal' :
+        display = operate(num1,num2,operator);
         num2 = '';
-        operator='';
-        input.value = num1;
-        return ;
-        break;
-
-        case '-' : input.value =  operate(num1,num2,'-');
-        return ;
-        break;
-
-        case '*' : input.value =   operate(num1,num2,'*');
-        return;
-        break;
-
-        case '/' : input.value =   operate(num1,num2,'/');
-        return;
-        break;
-
-   }
-}   
-
-if(operatorClass == 'addc'){
-        operator='+';
-        num1 = display;
-}else if(operatorClass == 'substractc'){
-        operator='-';
-        num1 = display;
-}else if(operatorClass == 'multiplyc'){
-        operator='*';
-        num1 = display;
-}else if(operatorClass == 'dividec'){
-        operator='/';
-        num1 = display;
-}else{
-  
+        operator = '';
+        break;  
 }
 
-display += operatorb.textContent;
-input.value = display; 
+input.value = display;
 
 }
