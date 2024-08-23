@@ -1,30 +1,37 @@
 
 function add(a, b){
-    a= parseInt(a)
-    b= parseInt(b)
-    return a+b;
+    a= parseFloat(a)
+    b= parseFloat(b)
+    return (a+b)  ;
 }
 
 function substract(a, b){
-    a= parseInt(a)
-    b= parseInt(b)
-    return a-b;
+    a= parseFloat(a)
+    b= parseFloat(b)
+    return (a-b)  ;
 }
 
 function divide(a, b){
-    a= parseInt(a)
-    b= parseInt(b)
-    return a/b;
+    if(b == '0'){
+        return "Can't divide by Zero !"
+    }
+    a= parseFloat(a)
+    b= parseFloat(b)
+    return (a/b).toFixed(2)  ;
 }
 
 function multiply(a, b){
-    a= parseInt(a)
-    b= parseInt(b)
-    return a*b;
+    a= parseFloat(a)
+    b= parseFloat(b)
+    return (a*b);
 }
 
 
 function operate(a,b,operator){
+
+    if(b == ''){
+        return a;
+    }
 
     switch(operator){
         case '+' :
@@ -59,63 +66,83 @@ function handleClick (event) {
     const buttonId = button.id;
 
 switch(buttonId){
-    case 'zero': display += '0';
+    case 'zero':
         if(operator != ''){
             num2 += '0'
+        }else{
+            num1 = '0'
         }
         break;
 
-    case 'one' : display += '1';
+    case 'one' : 
         if(operator != ''){
             num2 += '1'
+        }else{
+            num1 += '1'
         }
         break;
 
-    case 'two' : display += '2';
+    case 'two' : 
         if(operator != ''){
             num2 += '2'
+        }else{
+            num1 += '2';
         }
         break;
 
-    case 'three' : display += '3';
+    case 'three' : 
         if(operator != ''){
             num2 += '3'
+        }else{
+            num1 += '3';
         }
         break;
 
-    case 'four' : display += '4';
+    case 'four' : 
         if(operator != ''){
             num2 += '4'
+        }else{
+            num1 += '4';
         }
         break;
 
-    case 'five' : display += '5';
+    case 'five' :
         if(operator != ''){
             num2 += '5'
+        }else{
+            num1 += '5';
         }
         break;
 
-    case 'six' : display += '6';
+    case 'six' : 
         if(operator != ''){
             num2 += '6'
+        }else{
+            num1 += '6';
         }
         break;
 
-    case 'seven' : display += '7';
+    case 'seven' : 
         if(operator != ''){
             num2 += '7'
+        }else{
+            num1 += '7';
         }
         break;
 
-    case 'eight' : display += '8';
+    case 'eight' : 
         if(operator != ''){
             num2 += '8'
+        }else{
+            num1 += '8';
         }
         break;
 
-    case 'nine' : display += '9';
+    case 'nine' :
         if(operator != ''){
             num2 += '9'
+        }else{
+            num1 += '9';
         }
         break;
 
@@ -128,14 +155,11 @@ switch(buttonId){
         }
 
     case 'add' : 
-        if(num2 != ''){
+        if(operator != ''){
             num1 = operate(num1,num2,operator);
             num2='';
             operator = '+';
-            display = num1+'+';
         }else{
-        num1 = display;
-        display += '+';
         operator = '+';
         }
         break;
@@ -145,10 +169,7 @@ switch(buttonId){
             num1 = operate(num1,num2,operator);
             num2='';
             operator = '-';
-            display = num1+'-';
         }else{
-        num1 = display;
-        display += '-';
         operator = '-';
         }
         break;
@@ -158,10 +179,7 @@ switch(buttonId){
             num1 = operate(num1,num2,operator);
             num2='';
             operator = '/';
-            display = num1+'/';
         }else{
-        num1 = display;
-        display += '/';
         operator = '/';
         }
         break;
@@ -171,28 +189,30 @@ switch(buttonId){
             num1 = operate(num1,num2,operator);
             num2='';
             operator = '*';
-            display = num1+'*';
         }else{
-        num1 = display;
-        display += '*';
         operator = '*';
         }
         break;
 
     case 'clear' :
-       num1 =' ';
+       num1 = '';
        num2 = '';
        display = '';
        operator = '';
         break;
 
     case 'equal' :
-        display = operate(num1,num2,operator);
+        if(num1 == ''){
+            return ;
+        }else{
+        num1 = operate(num1,num2,operator);
         num2 = '';
         operator = '';
+        }
         break;  
 }
 
+display = num1 + operator + num2 ;
 input.value = display;
 
 }
