@@ -1,23 +1,75 @@
-.calculator{
+html, body{
+    height : 100%;
+    margin : 0;
+}
+
+body{
+    background-color:rgb(102, 102, 237);
     display:flex;
     flex-direction : column;
-    /* justify-content:center; */
     align-items:center;
-    gap : 20px;
-    width : 410px;
-    height : 200px;
+    height : 100vh;
+    margin :0;
+}
+.calculator{
+    flex : 1;
+    display:flex;
+    flex-direction : column;
+    border: 10px solid black;
+    margin: 100px 600px;
+    background-color:rgb(168, 242, 168)
+}
+
+.keypad{
+    display : flex;
+    justify-content: space-evenly;
+    padding : 20px 20px;
+    background-color:rgb(168, 242, 168)
 }
 
 input{
     width : 400px;
-    height : 30px;
-    margin-top : 100px;
+    height : 100px;
+    /* margin-top : 100px; */
+    border-bottom: 8px solid black;
+    font-size :40px;
 }
-.keypad{
-    display : flex;
 
-}
 button{
-    width : 70px;
-    margin : 2px;
+    background-color:orange;
+    /* padding:0px;
+    margin : 0px; */
+    width : 80px;
+    height : 60px;
+    border:2px solid black;
+    border-radius : 5px;
+    border-collapse : collapse;
+    margin-bottom:5px;
+    font-size: 22px;
+    font-weight:bold;
+    /* margin : 2px; */
 }
+
+.footer{
+    color: white;
+    font-weight : bold;
+    text-shadow: 
+        2px 2px 0px black, /* Right bottom shadow */
+        -2px -2px 0px black, /* Left top shadow */
+        -2px 2px 0px black, /* Left bottom shadow */
+        2px -2px 0px black; 
+}
+
+.header{
+    font-size : 30px;
+    color:white;
+    font-weight : bold;
+    text-shadow: 
+        2px 2px 0px black, 
+        -2px -2px 0px black, /* Left top shadow */
+        -2px 2px 0px black, /* Left bottom shadow */
+        2px -2px 0px black; /* Righ
+}
+/* .num{
+    width :400px;
+} */

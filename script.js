@@ -2,28 +2,29 @@
 function add(a, b){
     a= parseFloat(a)
     b= parseFloat(b)
-    return (a+b)  ;
+    return (a+b).toString() ;
 }
 
 function substract(a, b){
     a= parseFloat(a)
     b= parseFloat(b)
-    return (a-b)  ;
+    return (a-b).toString() ;
 }
 
 function divide(a, b){
     if(b == '0'){
         return "Can't divide by Zero !"
-    }
+    }else{
     a= parseFloat(a)
     b= parseFloat(b)
-    return (a/b).toFixed(2)  ;
+    return (a/b).toString() ;
+    }
 }
 
 function multiply(a, b){
     a= parseFloat(a)
     b= parseFloat(b)
-    return (a*b);
+    return (a*b).toString() ;
 }
 
 
@@ -67,15 +68,15 @@ function handleClick (event) {
 
 switch(buttonId){
     case 'zero':
-        if(operator != ''){
+        if(operator){
             num2 += '0'
         }else{
-            num1 = '0'
+            num1 += '0'
         }
         break;
 
     case 'one' : 
-        if(operator != ''){
+        if(operator){
             num2 += '1'
         }else{
             num1 += '1'
@@ -83,7 +84,7 @@ switch(buttonId){
         break;
 
     case 'two' : 
-        if(operator != ''){
+        if(operator){
             num2 += '2'
         }else{
             num1 += '2';
@@ -91,7 +92,7 @@ switch(buttonId){
         break;
 
     case 'three' : 
-        if(operator != ''){
+        if(operator){
             num2 += '3'
         }else{
             num1 += '3';
@@ -99,7 +100,7 @@ switch(buttonId){
         break;
 
     case 'four' : 
-        if(operator != ''){
+        if(operator){
             num2 += '4'
         }else{
             num1 += '4';
@@ -107,7 +108,7 @@ switch(buttonId){
         break;
 
     case 'five' :
-        if(operator != ''){
+        if(operator){
             num2 += '5'
         }else{
             num1 += '5';
@@ -115,7 +116,7 @@ switch(buttonId){
         break;
 
     case 'six' : 
-        if(operator != ''){
+        if(operator){
             num2 += '6'
         }else{
             num1 += '6';
@@ -123,7 +124,7 @@ switch(buttonId){
         break;
 
     case 'seven' : 
-        if(operator != ''){
+        if(operator){
             num2 += '7'
         }else{
             num1 += '7';
@@ -131,7 +132,7 @@ switch(buttonId){
         break;
 
     case 'eight' : 
-        if(operator != ''){
+        if(operator){
             num2 += '8'
         }else{
             num1 += '8';
@@ -139,7 +140,7 @@ switch(buttonId){
         break;
 
     case 'nine' :
-        if(operator != ''){
+        if(operator){
             num2 += '9'
         }else{
             num1 += '9';
@@ -147,50 +148,107 @@ switch(buttonId){
         break;
 
     case 'negative' :
-        if(num2 != ''){
-            num2 = -num2
+        if(operator){
+            if(num2){
+            if(num2 == '0.'){
+                return num2 = '0';
+            }else{
+            num2 = (-num2).toString()
+            }
+        }
         }else{
-        num1 = -num1;
-        console.log(num1);
+            if(num1){
+            if(num1 == '0.'){
+                num1= '0';
+            }else{
+        num1 = (-num1).toString();
+            }
+        }
         }
 
+        break;
+
+    case 'decimal' :
+        if(operator){
+            if(num2.includes(".")){
+                return ;
+            }else{
+                if(num2===''){
+                    num2 += "0.";
+                }else{
+                num2 += '.'
+                }
+            }
+        }else{
+            if(num1.includes(".")){
+                return ;
+            }else{
+                if(num1 === ""){
+                    num1 += "0.";
+                }else{
+                num1 += '.'
+                }
+            }
+        }
+        break;
+
     case 'add' : 
-        if(operator != ''){
+        if(operator){
             num1 = operate(num1,num2,operator);
             num2='';
             operator = '+';
         }else{
-        operator = '+';
+            if(num1){
+                operator = '+';
+            }
         }
         break;
     
     case 'substract': 
-        if(num2 != ''){
+        if(num2){
             num1 = operate(num1,num2,operator);
             num2='';
             operator = '-';
-        }else{
+        }else{  
+            if(num1){
         operator = '-';
         }
+        }
+    
         break;
 
     case 'divide' :  
-        if(num2 != ''){
+        if(num2){
             num1 = operate(num1,num2,operator);
             num2='';
             operator = '/';
         }else{
-        operator = '/';
+            if(num1){
+                operator = '/';
+            }
         }
         break;
 
     case 'multiply': 
-        if(num2 != ''){
+        if(num2){
             num1 = operate(num1,num2,operator);
             num2='';
             operator = '*';
         }else{
-        operator = '*';
+            if(num1){
+            operator = '*';
+            }
+        }
+        break;
+
+    case 'backspace':
+        if(operator){
+            if(num2== ''){
+                operator = '';
+            }
+            num2 = num2.slice(0,-1);
+        }else{
+            num1 = num1.slice(0,-1);
         }
         break;
 
@@ -199,6 +257,7 @@ switch(buttonId){
        num2 = '';
        display = '';
        operator = '';
+       input.value = display;
         break;
 
     case 'equal' :
@@ -212,7 +271,11 @@ switch(buttonId){
         break;  
 }
 
-display = num1 + operator + num2 ;
-input.value = display;
+display = num1 +"   "+ operator+"   "+ num2 ;
 
+if(display === NaN){
+    display = ''
 }
+input.value = display;
+}
+
